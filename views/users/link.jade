@@ -1,0 +1,15 @@
+﻿.col-lg-6(style="padding-left:0")
+  table.table.table-hover.table-bordered
+    thead
+      tr
+        th.col-sm-2 {{lang.roleName}}
+        th {{lang.func}}
+        th.col-sm-1
+          button.btn.btn-primary.btn-xs(ng-click="append()") {{lang.create}}
+    tbody
+      tr(ng-repeat="item in model.Roles")
+        td {{item.Name}}
+        td
+          a(href="javascript:;", ng-click="viewFunctions()") {{item.Functions|merge:"Name":100:"..."|none:lang.none}}({{(item.Funs||[]).length}})
+        td
+          button.btn.btn-danger.btn-xs(ng-click="remove(item)") {{lang.remove}}

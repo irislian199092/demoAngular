@@ -1,0 +1,9 @@
+﻿.row
+  h4.page-header.text-info 用户管理
+.row
+  div
+    uib-tabset
+      uib-tab(heading="{{lang.baseInfo}}")
+        div(ng-include="'/users-base'")
+      uib-tab(heading="{{lang.linkInfo}}" disable="!model.Id" ng-click="checkRules()")
+        div(ng-include="'/users-link'")

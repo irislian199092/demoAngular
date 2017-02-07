@@ -1,0 +1,35 @@
+﻿.row
+  h4.page-header.text-info {{lang.title}}
+  form.form-horizontal
+    .col-lg-4.clear-padding
+      .input-group(ce-enter="search")
+        input.form-control(type="text", ng-model="Name")
+        span.input-group-btn
+          button.btn.btn-default(ng-click="search(false)", type="button") {{lang.search}}
+.row
+  .col-lg-6(style="padding-left:0;")
+    table.table.table-hover.table-bordered
+      thead
+        tr
+          th {{lang.name}}
+          th.col-sm-2
+            button.btn.btn-primary.btn-xs(ng-click="append(item)") {{lang.append}}
+      tbody
+        tr.pointer(ng-click="checked(item)", ng-repeat="item in list")
+          td(ng-if="!item.isModified") {{item.Name}}
+          td(ng-if="!item.isModified")
+            button.btn.btn-danger.btn-xs(ng-click="remove(item)") {{lang.remove}}
+            button.btn.btn-success.btn-xs(ng-click="edit(item)") {{lang.edit}}
+          td(ng-if="item.isModified")
+            input.form-control(type="text", ng-model="item.Name")
+          td(ng-if="item.isModified")
+            button.btn.btn-danger.btn-xs(ng-click="cancel(item)") {{lang.cancel}}
+            button.btn.btn-success.btn-xs(ng-click="save(item)") {{lang.save}}
+      tfoot
+        tr
+          td(colspan="4")
+            .pull-right
+              .pagination-info
+                span.ng-binding 共有{{total}}条
+                span.ng-binding 每页显示：{{size}}条
+              uib-pagination.pagination-sm(boundary-links="true", total-items="total", ng-model="current", max-size="10", ng-change="search(true)", items-per-page="size", previous-text="‹", next-text="›", first-text="«", last-text="»")

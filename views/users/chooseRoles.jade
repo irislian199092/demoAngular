@@ -1,0 +1,32 @@
+﻿.modal-header
+  h3.modal-title {{lang.chooseFuncs}}
+.modal-body
+  form.form-horizontal.clearfix
+    .col-lg-6.clear-padding
+      .input-group(ce-enter="search")
+        input.form-control(type="text", ng-model="Name")
+        span.input-group-btn
+          button.btn.btn-default(ng-click="search(false)", type="button") {{lang.search}}
+  table.table.table-hover.table-bordered
+    thead
+      tr
+        th.col-sm-1 选择
+        th.col-sm-2 角色
+        th 权限
+        th.col-sm-1 操作
+    tbody
+      tr.pointer(ng-click="checked(item)", ng-repeat="item in roles")
+        td
+          input(type="checkbox", ng-checked="item.isChecked")
+        td {{item.Name}}
+        td {{item.Functions|merge:"Name":7:"..."|none:"未关联角色"}}
+        td
+          button.btn.btn-danger.btn-xs 选择
+    tfoot
+      tr
+        td(colspan="4")
+          .pull-right
+            uib-pagination.pagination-sm(boundary-links="true", total-items="total", ng-model="current", max-size="10", ng-change="search(true)", items-per-page="size", previous-text="‹", next-text="›", first-text="«", last-text="»")
+.modal-footer
+  button.btn.btn-primary(ng-click="ok()") {{lang.save}}
+  button.btn.btn-warning(ng-click="cancel()") {{lang.cancel}}

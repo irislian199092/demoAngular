@@ -1,0 +1,6 @@
+﻿.modal-header
+  h3.modal-title 提示信息!
+.modal-body {{text.msg}}
+.modal-footer
+  button.btn.btn-primary(ng-if="text.ok", ng-click="ok()") {{text.ok}}
+  button.btn.btn-warning(ng-if="text.cancel", ng-click="cancel()") {{text.cancel}}
